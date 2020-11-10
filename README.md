@@ -30,7 +30,7 @@ strandが"+"か"―"かによってexonStartとexonEndsの順番が変わる(こ
 遺伝子のタイプごと(each)にヒストグラムを作成する<br>
 どちらかわからなかったので、optionでsum、eachを作成することで対応<br>
 
-### 問題点 ###
+### 問題点###
 作成した図が合っているのか???
 
 ![sum](https://user-images.githubusercontent.com/71812107/98615289-95e93d00-233d-11eb-8495-88c33e1d0b21.png)
@@ -40,8 +40,7 @@ sum.png
 eac.png
 
 
-## お題3　それぞれの遺伝子ファイルについて、「何らかの方法で」遺伝子の重複を除いた修正ファイルを作成する。
-##
+## お題3　それぞれの遺伝子ファイルについて、「何らかの方法で」遺伝子の重複を除いた修正ファイルを作成する。##
 
 例
 ``python3 remove_duplicate.py refFlat.GRCh38.gene.name.txt -n remove_duplicate.csv``
@@ -49,8 +48,7 @@ eac.png
 重複遺伝子があったら、遺伝子名-1、遺伝子名-2、…とすることで重複をなくす<br>
 defaltではremove_duplicate.csvが作成される
 
-## お題4　２つの遺伝子ファイル間で共通する遺伝子、共通でない遺伝子がいくつ存在するかカウントする。
-##
+## お題4　２つの遺伝子ファイル間で共通する遺伝子、共通でない遺伝子がいくつ存在するかカウントする。##
 
 例
 ``python3 count_gene.py refFlat.GRCh38.gene.name.txt refFlat.hg38.txt``
