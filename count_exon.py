@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 # $ python3 count_exon.py refFlat.GRCh38.gene.name.txt -n sum.png
 # もしくは
 # 遺伝子のタイプごと(each)にヒストグラムを作成する??
-# python3 count_exon.py refFlat.GRCh38.gene.name.txt -o each     
+# python3 count_exon.py refFlat.GRCh38.gene.name.txt -o each
 
 def sum_of_each_type(df, newfile):
     # 遺伝子タイプ(12番目)ごとに各値を合計する
@@ -26,16 +26,25 @@ def sum_of_each_type(df, newfile):
 
 def histgram_of_each_type(df, newfile):
     # 遺伝子タイプ(12番目)ごとのexon_count(8番目)の各ヒストグラムを作成する
-    df[8].hist(by=df[12], figsize=(25,20))
+    #gina: xrot=0とすることで、x軸のラベルを平行にしました。
+    df[8].hist(by=df[12], figsize=(25,20), xrot=0)
     plt.tight_layout()
     plt.savefig(newfile)
-    
+
+def histgram_of_each_type_bins(df, newfile):
+    #gina: histgramのbinの数を整数値にしようとしましたが、
+    #gina: exonの数の最大が363のため、あまりうまくいきませんでした。
+    bins = list(range(0,df[8].max()+1))
+    df[8].hist(by=df[12], figsize=(25,20), xrot=0, bins = bins)
+    plt.tight_layout()
+    plt.savefig(newfile)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="create exon count histgram")
     parser.add_argument("filename" ,help="file path", type=str)
     parser.add_argument("-n","--newfile", help="new file name", type=str, default="new_histgram.png")
-    parser.add_argument("-o","--option", help="sum or each", type=str, default="sum")
+    parser.add_argument("-o","--option", help="sum or each, bins", type=str, default="sum")
 
     args = parser.parse_args()
 
@@ -50,5 +59,7 @@ if option == "sum":
     sum_of_each_type(df, newfile)
 elif option == "each":
     histgram_of_each_type(df, newfile)
+elif option == "bins":
+    histgram_of_each_type_bins(df, newfile)
 else:
     print("ERR : select correct option")
