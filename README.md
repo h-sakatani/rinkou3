@@ -26,7 +26,7 @@ strandが"+"か"―"かによってexonStartとexonEndsの順番が変わる(こ
 例
  ``python3 count_exon.py refFlat.GRCh38.gene.name.txt -n sum.png -o sum``
 
-``python3 count_exon.py refFlat.GRCh38.gene.name.txt -n each.png -o each``
+``python3 count_exon.py refFlat.GRCh38.gene.name.txt -n each.png -o each``  
 ``python3 count_exon.py refFlat.GRCh38.gene.name.txt -n bins.png -o bins``
 
 遺伝子のタイプごとのexon数の合計(sum)をヒストグラムにする<br>
