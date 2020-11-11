@@ -17,6 +17,9 @@ strandが"+"か"―"かによってexonStartとexonEndsの順番が変わる(こ
 後で気づいたので、input dataによる修正は行っておらず'extract_start_end'のlとiをその都度入れ替えている(今のところ)<br>
 遺伝子名に重複があって遺伝子IDに重複がある場合は、遺伝子IDの重複が考慮されていないので出力は分けられない<br>
 
+-> startとendのlocationをまとめたリストをソートすることで、
+＋の時は、数字の小さいほう→大きいほう
+ーの時は、数字の大きいほう→小さいほうになるようにしました。
 
 ## お題2　遺伝子のタイプごとにexon数をカウントし、分布をヒストグラムで表示する。
 
@@ -40,6 +43,7 @@ sum.png
 eac.png
 
 
+
 ## お題3　それぞれの遺伝子ファイルについて、「何らかの方法で」遺伝子の重複を除いた修正ファイルを作成する。
 
 例
@@ -59,7 +63,7 @@ defaltではremove_duplicate.csvが作成される
 ## お題5　２つの遺伝子ファイル間で共通する遺伝子について、 refFlat.hg38.txtにgene typeの列を追加したファイルを作成する。
 
 例
-``python3 count_gene.py refFlat.GRCh38.gene.name.txt refFlat.hg38.txt``
+``python3 add_gene_type.py refFlat.GRCh38.gene.name.txt refFlat.hg38.txt``
 
 defalutでadd_gene_type.csvを出力<br>
 順番はucsc、ensemblファイルでないと作動しない(問題点??)
