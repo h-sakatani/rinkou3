@@ -27,6 +27,7 @@ strandが"+"か"―"かによってexonStartとexonEndsの順番が変わる(こ
  ``python3 count_exon.py refFlat.GRCh38.gene.name.txt -n sum.png -o sum``
 
 ``python3 count_exon.py refFlat.GRCh38.gene.name.txt -n each.png -o each``
+``python3 count_exon.py refFlat.GRCh38.gene.name.txt -n bins.png -o bins``
 
 遺伝子のタイプごとのexon数の合計(sum)をヒストグラムにする<br>
 もしくは<br>
@@ -40,9 +41,10 @@ strandが"+"か"―"かによってexonStartとexonEndsの順番が変わる(こ
 sum.png
 
 ![each](https://user-images.githubusercontent.com/71812107/98615341-b2857500-233d-11eb-9dca-c795352beeb2.png)
-eac.png
+each.png
 
-
+![bins](https://user-images.githubusercontent.com/14154512/98787434-d7174500-2442-11eb-9b80-ef9409a3900f.png)
+bins.png
 
 ## お題3　それぞれの遺伝子ファイルについて、「何らかの方法で」遺伝子の重複を除いた修正ファイルを作成する。
 
