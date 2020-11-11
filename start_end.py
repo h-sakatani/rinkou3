@@ -22,12 +22,16 @@ def create_strand_list(sub_df):
         starts = sub_df[9].iloc[n]
         # ","で区切らないと[17914, 18267]を[1,7,9...,6,7]という風に認識してしまう
         starts = list(starts.split(","))
+        
+        #gine: pop()することで最後の空の要素を除きました。
+        starts.pop()
         # geneIDをkeyにexonStartsのlistをvalueに保存
         starts_dict[name] = starts
 
         #　exonEnds(10行目)についても同様
         ends =  sub_df[10].iloc[n]
         ends = list(ends.split(","))
+        ends.pop()
         ends_dict[name] = ends
         
     return starts_dict, ends_dict
@@ -42,7 +46,10 @@ def extract_start_end(divided_df, directions, newfile, gene):
     
         for key, values in starts_dict.items():
             print("gene ID : " + str(key))
-            newtext.write("gene ID : " + str(key) + "\n") 
+            newtext.write("gene ID : " + str(key) + "\n")
+
+            #gina: 結果でstart-endの位置をよりわかりやすくするためにゲノムでの方向を示しました。
+            newtext.write("direction : " + str(directions) + "\n")
 
             starts_list = starts_dict[key]
             ends_list = ends_dict[key]
@@ -54,10 +61,19 @@ def extract_start_end(divided_df, directions, newfile, gene):
                 # starndが"-"の時は後ろからの出力にする
                 if directions == "-":
                     l = -(i + 1)
+
+                    #gina: ここまでやる必要はないかもしれませんが、"-"のときは、start-endが
+                    #      数の大きいほう-数の小さいほうとなるようにしました。
+                    #gine: リストをソートすることで、元ファイルの並びを一律にしました。
+                    start = sorted(ends_list)[l]
+                    end = sorted(starts_list)[l]
+                    
                 else:
                     l = i
-                start = starts_list[l]
-                end = ends_list[l]
+                    
+                    #gine: リストをソートすることで、元ファイルの並びを一律にしました。
+                    start = sorted(starts_list)[l]
+                    end = sorted(ends_list)[l]
                 print(str(start) + "-" + str(end))
                 newtext.write(str(start) + "-" + str(end)+"\n") 
         newtext.close()

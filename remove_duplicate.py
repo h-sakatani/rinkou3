@@ -36,4 +36,3 @@ while any(df[0].duplicated()):
 
 else:
     df.to_csv(newfile, header=False, index=False)
-
